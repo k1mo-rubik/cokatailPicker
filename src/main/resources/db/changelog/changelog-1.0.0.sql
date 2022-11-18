@@ -1,6 +1,5 @@
 CREATE TABLE customers
 (
-    id       BIGINT PRIMARY KEY NOT NULL,
-    user_id  BIGINT             NOT NULL,
+    id      UUID PRIMARY KEY NOT NULL,
     nickname VARCHAR(255)       NOT NULL
 );
