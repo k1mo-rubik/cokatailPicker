@@ -1,0 +1,4 @@
+databaseChangeLog:
+    - includeAll:
+        path: resources\db\changelog\changelog-1.0.0.sql
+        relativeToChangelogFile: true
