@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres
+    container_name: cocktails_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    command: postgres -p 5432
