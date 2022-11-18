@@ -1,6 +1,6 @@
-create table users{
-    id int not null auto_increment,
-    username varchar(255) not null,
-    password varchar(255) not null,
-    primary key (id)
-}
+CREATE TABLE customers
+(
+    id       BIGINT PRIMARY KEY NOT NULL,
+    user_id  BIGINT             NOT NULL,
+    nickname VARCHAR(255)       NOT NULL
+);
