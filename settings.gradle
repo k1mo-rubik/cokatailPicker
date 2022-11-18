@@ -1,4 +1,0 @@
-
-rootProject.name = 'cocktailPicker'
-
-includeBuild 'cocktails'
