@@ -1,9 +1,10 @@
-package ru.cocktails.entity;
+package ru.cocktails.customer.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.cocktails.cocktail.model.entity.Cocktail;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
