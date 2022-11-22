@@ -1,1 +1,1 @@
-# coсk tail Picker
+# coсktail Picker
