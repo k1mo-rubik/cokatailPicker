@@ -14,7 +14,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @PostMapping
+    @PostMapping("/customer")
     public ResponseEntity<String> createCustomer(@RequestParam("nickname") String nickname) {
         customerService.createCustomer(nickname);
         return ResponseEntity.ok("Customer created");

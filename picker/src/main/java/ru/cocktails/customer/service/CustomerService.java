@@ -20,7 +20,9 @@ public class CustomerService {
             return "Customer already exists";
         }
         else{
-
+            Customer customer = new Customer();
+            customer.setNickname(nickname);
+            customerRepository.save(customer);
             return "Customer created";
         }
     }
