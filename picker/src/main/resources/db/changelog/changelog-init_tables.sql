@@ -12,7 +12,7 @@ CREATE table types
 
 CREATE TABLE cocktails
 (
-    id      INT PRIMARY KEY NOT NULL,
+    id      serial PRIMARY KEY NOT NULL,
     name    VARCHAR(100)    NOT NULL,
     type    int             NOT NULL,
     picture VARCHAR(255)    NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE cocktails
 
 create table ingredients
 (
-    id   INT PRIMARY KEY NOT NULL,
+    id   serial PRIMARY KEY NOT NULL,
     name VARCHAR(100)    NOT NULL
 );
 
