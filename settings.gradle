@@ -1,1 +1,3 @@
-rootProject.name = 'cocktails'
+rootProject.name = 'cockTailPicker'
+
+includeBuild 'picker'
