@@ -36,6 +36,7 @@ public class ApplicationError {
      * @param errorType тип ошиби.
      * @param status    статус ошибки.
      */
+
     public ApplicationError(String message, ErrorType errorType, HttpStatus status) {
         this.message = message;
         this.errorType = errorType;
