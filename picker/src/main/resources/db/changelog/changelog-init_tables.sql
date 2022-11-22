@@ -1,6 +1,6 @@
 CREATE TABLE customers
 (
-    id       INT PRIMARY KEY NOT NULL,
+    id       serial PRIMARY KEY NOT NULL,
     nickname VARCHAR(100)    NOT NULL
 );
 
