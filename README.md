@@ -1,1 +1,1 @@
-# cokatailPicker
+# coсk tail Picker
