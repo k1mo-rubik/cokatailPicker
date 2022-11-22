@@ -16,8 +16,8 @@ public class CustomerController {
 
     @PostMapping("/customer")
     public ResponseEntity<String> createCustomer(@RequestParam("nickname") String nickname) {
-        customerService.createCustomer(nickname);
-        return ResponseEntity.ok("Customer created");
+        ;
+        return ResponseEntity.ok().body(customerService.createCustomer(nickname));
     }
 
 }
