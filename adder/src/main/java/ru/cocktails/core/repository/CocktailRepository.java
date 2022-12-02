@@ -5,10 +5,11 @@ import org.springframework.stereotype.Repository;
 import ru.cocktails.core.entity.Cocktail;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface CocktailRepository extends JpaRepository<Cocktail, UUID> {
 
-    List<Cocktail> findAllByName(String name);
+    Optional<Cocktail> findByName(String name);
 }

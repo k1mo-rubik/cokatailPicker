@@ -4,13 +4,19 @@ import lombok.SneakyThrows;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import ru.cocktails.buttons.BotButtons;
 import ru.cocktails.commands.StartCommand;
+import ru.cocktails.core.entity.Cocktail;
 import ru.cocktails.core.entity.Customer;
 import ru.cocktails.core.entity.Room;
 import ru.cocktails.core.service.CustomerService;
 import ru.cocktails.core.service.RoomService;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class Bot extends TelegramLongPollingCommandBot {
@@ -63,12 +69,16 @@ public class Bot extends TelegramLongPollingCommandBot {
                 customer.setRole(update.getMessage().getText());
                 customerService.save(customer);
                 message.setText("Отлично! Приятного вечера!" + getMessageOnRole(update.getMessage().getText()));
+                message.setReplyMarkup(getCockTailsButtons(customer.getRoom()));
                 execute(message);
             } else {
                 message.setText("Роль введена неверно");
                 message.setReplyMarkup(BotButtons.getRoleButtons());
                 execute(message);
             }
+        } else if (customer.getRole().equals("Заказывающий")) {
+            Room room = roomService.findById(customer.getRoom().getId());
+
         }
     }
 
@@ -78,11 +88,34 @@ public class Bot extends TelegramLongPollingCommandBot {
 
     private String getMessageOnRole(String role) {
         if (role.equals("Бармен")) {
-            return " Вскоре вы начнёте получать заказы коктейлей";
+            return " Вскоре вы начнёте получать заказы коктейлей. Сил вам!";
         } else{
             return " Выбирайте интересующий вас коктейль из списка. Бармен по-возможности приготовит его для вас";
         }
 
+    }
+
+    private ReplyKeyboardMarkup getCockTailsButtons(Room room) {
+        ReplyKeyboardMarkup replyKeyboardMarkupMain  = new ReplyKeyboardMarkup();
+        replyKeyboardMarkupMain.setSelective(true);
+        replyKeyboardMarkupMain.setResizeKeyboard(true);
+        replyKeyboardMarkupMain.setOneTimeKeyboard(false);
+
+        KeyboardRow firstRow = new KeyboardRow();
+        Set<Cocktail> cocktails = room.getCocktailRooms();
+        List<KeyboardRow> keyboardRowList = new ArrayList<>();
+        int flag = 0;
+        for (Cocktail cocktail : cocktails) {
+            flag++;
+            if(flag == 3) {
+                keyboardRowList.add(firstRow);
+                firstRow = new KeyboardRow();
+                flag = 0;
+            }
+            firstRow.add(cocktail.getName());
+        }
+        replyKeyboardMarkupMain.setKeyboard(keyboardRowList);
+        return replyKeyboardMarkupMain;
     }
 
 }

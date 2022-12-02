@@ -31,7 +31,6 @@ create table if not exists queue
 
 create table if not exists cocktail_room
 (
-    id          uuid primary key,
     cocktail_id uuid not null,
     room_id     uuid not null,
     in_stock     boolean default true,

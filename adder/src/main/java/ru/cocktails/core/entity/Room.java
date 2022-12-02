@@ -9,7 +9,11 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -32,11 +36,18 @@ public class Room {
     @Type(type = "org.hibernate.type.TextType")
     private String name;
 
-    @OneToMany(mappedBy = "room")
-    private Set<CocktailRoom> cocktailRooms = new LinkedHashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "cocktail_room",
+            joinColumns = @JoinColumn(name = "room_id"),
+            inverseJoinColumns = @JoinColumn(name = "cocktail_id"))
+    private Set<Cocktail> cocktailRooms = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "room")
     private Set<Customer> customers = new LinkedHashSet<>();
+
+    public void addCocktail(Cocktail cocktail) {
+        cocktailRooms.add(cocktail);
+    }
 
     @Override
     public boolean equals(Object o) {

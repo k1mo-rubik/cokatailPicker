@@ -36,7 +36,7 @@ public class Customer {
     @Column(name = "chat_id", nullable = false)
     private Long chatId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id")
     private Room room;
 
