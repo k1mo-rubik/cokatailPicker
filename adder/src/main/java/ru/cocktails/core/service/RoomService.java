@@ -16,4 +16,8 @@ public class RoomService {
     public Room findById(String name) {
         return roomRepository.findByName(name).orElse(null);
     }
+
+    public void save(Room room) {
+        roomRepository.save(room);
+    }
 }

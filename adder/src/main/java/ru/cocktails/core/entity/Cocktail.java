@@ -27,9 +27,6 @@ public class Cocktail {
     @Type(type = "org.hibernate.type.TextType")
     private String name;
 
-    @Column(name = "instock")
-    private Boolean instock;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

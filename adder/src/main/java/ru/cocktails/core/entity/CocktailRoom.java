@@ -33,6 +33,9 @@ public class CocktailRoom {
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
+    @Column(name = "in_stock", nullable = false)
+    private Boolean inStock;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
