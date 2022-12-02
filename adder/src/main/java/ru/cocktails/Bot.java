@@ -104,14 +104,14 @@ public class Bot extends TelegramLongPollingCommandBot {
         KeyboardRow firstRow = new KeyboardRow();
         Set<Cocktail> cocktails = room.getCocktailRooms();
         List<KeyboardRow> keyboardRowList = new ArrayList<>();
-        int flag = 0;
+        int flag = 1;
         for (Cocktail cocktail : cocktails) {
-            flag++;
-            if(flag == 3) {
+            if(flag == 2) {
                 keyboardRowList.add(firstRow);
                 firstRow = new KeyboardRow();
                 flag = 0;
             }
+            flag++;
             firstRow.add(cocktail.getName());
         }
         replyKeyboardMarkupMain.setKeyboard(keyboardRowList);
