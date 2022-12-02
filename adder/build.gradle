@@ -39,8 +39,10 @@ dependencies {
 	// Logger
 	implementation 'org.slf4j:slf4j-api:1.7.30'
 
-	// Module
-	// implementation project(':processor')
+	// Database
+	implementation 'org.liquibase:liquibase-core'
+	implementation 'org.postgresql:postgresql'
+
 
 	// Test
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
