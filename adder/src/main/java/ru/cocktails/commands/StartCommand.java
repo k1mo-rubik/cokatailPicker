@@ -8,12 +8,19 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.cocktails.buttons.BotButtons;
+import ru.cocktails.core.entity.Customer;
+import ru.cocktails.core.service.CustomerService;
+
+import java.util.UUID;
 
 @Slf4j
 public class StartCommand extends ServiceCommand {
 
-    public StartCommand(String commandIdentifier, String description) {
+    private final CustomerService customerService;
+
+    public StartCommand(String commandIdentifier, String description, CustomerService customerService) {
         super(commandIdentifier, description);
+        this.customerService = customerService;
     }
 
     @SneakyThrows
@@ -23,7 +30,7 @@ public class StartCommand extends ServiceCommand {
         message.enableMarkdown(false);
         message.setChatId(String.valueOf(chat.getId()));
         message.setText("Добро пожаловать в Cocktails Bot! Введи идентификатор комнаты");
-        message.setReplyMarkup(BotButtons.getMainButtons());
+        registerCustomer(user, chat);
 
         try {
             absSender.execute(message);
@@ -33,6 +40,16 @@ public class StartCommand extends ServiceCommand {
             throw new TelegramApiException(e);
         }
 
+    }
+
+    private void registerCustomer(User user, Chat chat) {
+        if (customerService.findById(chat.getId()) == null) {
+            Customer customer = new Customer();
+            customer.setChatId(chat.getId());
+            customer.setName(user.getFirstName());
+            customer.setId(UUID.randomUUID());
+            customerService.save(customer);
+        }
     }
 
 }

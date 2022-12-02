@@ -8,9 +8,9 @@ CREATE table if not exists customer
 (
     id      uuid primary key,
     name    text,
-    chatId  text not null,
+    chat_id  bigint not null,
     room_id uuid,
-    role   text not null,
+    role   text,
     foreign key (room_id) references room (id)
 
 );

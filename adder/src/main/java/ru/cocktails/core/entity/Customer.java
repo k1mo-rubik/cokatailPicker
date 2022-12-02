@@ -33,15 +33,14 @@ public class Customer {
     @Type(type = "org.hibernate.type.TextType")
     private String name;
 
-    @Column(name = "chatid", nullable = false)
-    @Type(type = "org.hibernate.type.TextType")
-    private String chatid;
+    @Column(name = "chat_id", nullable = false)
+    private Long chatId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;
 
-    @Column(name = "role", nullable = false)
+    @Column(name = "role")
     @Type(type = "org.hibernate.type.TextType")
     private String role;
 
