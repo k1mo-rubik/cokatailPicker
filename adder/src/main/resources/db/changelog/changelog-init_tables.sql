@@ -1,7 +1,7 @@
 create table if not exists room
 (
     id   uuid primary key,
-    name text not null
+    name text not null unique
 );
 
 CREATE table if not exists customer
@@ -12,7 +12,6 @@ CREATE table if not exists customer
     room_id uuid,
     role   text,
     foreign key (room_id) references room (id)
-
 );
 
 create table if not exists cocktail

@@ -3,6 +3,7 @@ package ru.cocktails.core.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.checkerframework.checker.units.qual.C;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Type;
 
@@ -11,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;

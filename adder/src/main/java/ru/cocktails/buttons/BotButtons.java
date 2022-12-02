@@ -18,7 +18,7 @@ public class BotButtons {
 
     }
 
-    public static ReplyKeyboardMarkup getMainButtons() {
+    public static ReplyKeyboardMarkup getRoleButtons() {
         KeyboardRow firstRow = new KeyboardRow();
         firstRow.add("Бармен");
         firstRow.add("Заказывающий");

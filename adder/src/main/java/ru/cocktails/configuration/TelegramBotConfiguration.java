@@ -8,6 +8,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import ru.cocktails.Bot;
 import ru.cocktails.core.service.CustomerService;
+import ru.cocktails.core.service.RoomService;
 
 @Configuration
 public class TelegramBotConfiguration {
@@ -16,8 +17,9 @@ public class TelegramBotConfiguration {
     public Bot telegramBot(
             @Value("${bot.name}") String name,
             @Value("${bot.token}") String token,
-            CustomerService customerService) {
-        return new Bot(token, name, customerService);
+            CustomerService customerService,
+            RoomService roomService) {
+        return new Bot(token, name, customerService, roomService);
     }
 
     @Bean
