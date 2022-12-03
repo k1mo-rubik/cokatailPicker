@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Bot extends TelegramLongPollingCommandBot {
 
@@ -78,6 +79,7 @@ public class Bot extends TelegramLongPollingCommandBot {
             }
         } else if (customer.getRole().equals("Заказывающий")) {
             Room room = roomService.findById(customer.getRoom().getId());
+            Set<Cocktail> cocktails = room.getCocktailRooms();
 
         }
     }
@@ -104,16 +106,17 @@ public class Bot extends TelegramLongPollingCommandBot {
         KeyboardRow firstRow = new KeyboardRow();
         Set<Cocktail> cocktails = room.getCocktailRooms();
         List<KeyboardRow> keyboardRowList = new ArrayList<>();
-        int flag = 1;
+        int flag = 0;
         for (Cocktail cocktail : cocktails) {
+            firstRow.add(cocktail.getName());
+            flag++;
+            keyboardRowList.add(firstRow);
             if(flag == 2) {
-                keyboardRowList.add(firstRow);
                 firstRow = new KeyboardRow();
                 flag = 0;
             }
-            flag++;
-            firstRow.add(cocktail.getName());
         }
+        keyboardRowList = keyboardRowList.stream().distinct().collect(Collectors.toList());
         replyKeyboardMarkupMain.setKeyboard(keyboardRowList);
         return replyKeyboardMarkupMain;
     }
