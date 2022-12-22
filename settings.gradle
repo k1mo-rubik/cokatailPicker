@@ -1,3 +1,4 @@
 rootProject.name = 'cockTailPicker'
 
 includeBuild 'picker'
+includeBuild 'adder'
